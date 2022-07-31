@@ -30,7 +30,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 // pool configuration https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/pg/index.d.ts
 const poolConfigOptions = {
-  connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  connectionString: `postgres://tnzzmcexvccgef:37ff68b88881759de8d0e6a803bb91a5634dd9eecd5d54966e49088525fdbe65@ec2-100-26-39-41.compute-1.amazonaws.com/dbadq5pojigai9`,
 };
 const poolInstance = new pg.Pool(poolConfigOptions);
 const pgStore = new pgSession({
