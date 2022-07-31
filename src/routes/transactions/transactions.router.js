@@ -6,13 +6,13 @@ const getUserBalance = require("./getUserBalance.controller");
 const updateTransaction = require("./updateTransaction.controller");
 const destroyTransaction = require("./destroyTransaction.controller");
 
-const userTransactions = Router();
+const transactionsRouter = Router();
 
-userTransactions.route("/").get(getAllTransactions);
-userTransactions.route("/last").get(getLastTransactions);
-userTransactions.route("/").post(postTransaction);
-userTransactions.route("/balance").get(getUserBalance);
-userTransactions.route("/").put(updateTransaction);
-userTransactions.route("/:transaction_id").delete(destroyTransaction);
+transactionsRouter.route("/").get(getAllTransactions);
+transactionsRouter.route("/last").get(getLastTransactions);
+transactionsRouter.route("/").post(postTransaction);
+transactionsRouter.route("/balance").get(getUserBalance);
+transactionsRouter.route("/").put(updateTransaction);
+transactionsRouter.route("/:transaction_id").delete(destroyTransaction);
 
-module.exports = userTransactions;
+module.exports = transactionsRouter;

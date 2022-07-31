@@ -8,8 +8,6 @@ const session = require("express-session");
 var passport = require("passport");
 const pgSession = require("connect-pg-simple")(session);
 const pg = require("pg");
-const userTransactions = require("./routes/transactions/userTransactions.router.js");
-const user = require("./routes/user/index.js");
 
 const server = express();
 server.name = "API";
@@ -57,9 +55,11 @@ require("./config/passport");
 server.use(passport.initialize());
 server.use(passport.session());
 
+
+const router = require("./routes/index.js");
 // app.use("/api/v1/users", usersRouter);
-server.use("/transactions", userTransactions);
-server.use("/user", user);
+server.use("/", router);
+
 
 // Error catching endware.
 server.use((err, req, res, next) => {

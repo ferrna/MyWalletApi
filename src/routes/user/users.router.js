@@ -5,9 +5,9 @@ const { User } = require("../../db");
 const isAuth = require("./authMiddleware").isAuth;
 const isAdmin = require("./authMiddleware").isAdmin;
 
-const router = Router();
+const usersRouter = Router();
 
-router.post("/login", (req, res, next) => {
+usersRouter.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err) throw err;
     if (!user) return res.status(401).send({ msg: "User doesn't exists" });
@@ -20,7 +20,7 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/register", async (req, res, next) => {
+usersRouter.post("/register", async (req, res, next) => {
   const saltHash = genPassword(req.body.password);
   const salt = saltHash.salt;
   const hash = saltHash.hash;
@@ -40,23 +40,23 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.get("/user", async (req, res, next) => {
+usersRouter.get("/user", async (req, res, next) => {
   //const [results] = await conn.query("SELECT * FROM session LIMIT 1");
   //console.log(results[0].sess.passport);
   res.send(req.user.dataValues.username);
 });
 
-router.get("/logout", (req, res, next) => {
+usersRouter.get("/logout", (req, res, next) => {
   req.logout((r) => console.log(r));
   res.send({ message: "User logged out" });
 });
 
-router.get("/protected-route", isAuth, (req, res, next) => {
+usersRouter.get("/protected-route", isAuth, (req, res, next) => {
   res.status(200).send("The user is authenticated.");
 });
 
-router.get("/admin-route", isAdmin, (req, res, next) => {
+usersRouter.get("/admin-route", isAdmin, (req, res, next) => {
   res.send("You made it to the admin route.");
 });
 
-module.exports = router;
+module.exports = usersRouter;
