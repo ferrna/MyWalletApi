@@ -7,8 +7,9 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 //postgres:audinac747@localhost:5432/challengealkemyfs
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false,
-  native: false,
   dialect: "postgres",
+  native: true,
+  ssl: true,
   dialectOptions: {
     ssl: true,
   },
