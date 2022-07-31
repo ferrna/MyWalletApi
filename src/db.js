@@ -5,15 +5,18 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 //${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
 //postgres:audinac747@localhost:5432/challengealkemyfs
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false,
-  dialect: "postgres",
-  native: true,
-  ssl: true,
-  dialectOptions: {
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@ec2-100-26-39-41.compute-1.amazonaws.com/dbadq5pojigai9`,
+  {
+    logging: false,
+    dialect: "postgres",
+    native: true,
     ssl: true,
-  },
-});
+    dialectOptions: {
+      ssl: true,
+    },
+  }
+);
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
