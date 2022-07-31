@@ -9,11 +9,11 @@ const usersRouter = Router();
 
 usersRouter.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user) => {
-    if (err) throw err;
+    if (err) throw new Error(err.message);
     if (!user) return res.status(401).send({ msg: "User doesn't exists" });
     else {
       req.logIn(user, (err) => {
-        if (err) throw err;
+        if (err) throw new Error(err.message);
         res.send("Successfully authenticated");
       });
     }
