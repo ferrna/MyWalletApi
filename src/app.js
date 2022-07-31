@@ -1,26 +1,26 @@
-require("dotenv").config();
-require("./db.js");
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const morgan = require("morgan");
-const cors = require("cors");
-const session = require("express-session");
-var passport = require("passport");
-const pgSession = require("connect-pg-simple")(session);
-const pg = require("pg");
+require('dotenv').config();
+require('./db.js');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+const cors = require('cors');
+const session = require('express-session');
+var passport = require('passport');
+const pgSession = require('connect-pg-simple')(session);
+const pg = require('pg');
 
 const server = express();
-server.name = "API";
+server.name = 'API';
 
-server.use(express.urlencoded({ extended: true, limit: "50mb" }));
-server.use(express.json({ limit: "50mb" }));
+server.use(express.urlencoded({ extended: true, limit: '50mb' }));
+server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
-server.use(morgan("dev"));
+server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header('Access-Control-Allow-Origin', 'https://my-wallet-client-chi.vercel.app/');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
 
@@ -51,14 +51,14 @@ server.use(
 );
 
 /* -------------- PASSPORT AUTHENTICATION ---------------- */
-require("./config/passport");
+require('./config/passport');
 server.use(passport.initialize());
 server.use(passport.session());
 
 
-const router = require("./routes/index.js");
-// app.use("/api/v1/users", usersRouter);
-server.use("/", router);
+const router = require('./routes/index.js');
+// app.use('/api/v1/users', usersRouter);
+server.use('/', router);
 
 
 // Error catching endware.
