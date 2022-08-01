@@ -49,8 +49,9 @@ server.use(
     saveUninitialized: false,
     store: pgStore,
     cookie: {
-      secure: false,
+      secure: true,
       maxAge: 3600000, //1 hour
+      sameSite: 'none',
     },
     secure : true
   })
