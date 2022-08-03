@@ -6,7 +6,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 //${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
 //postgres:audinac747@localhost:5432/challengealkemyfs
 const sequelize = new Sequelize(
-  `postgres://tnzzmcexvccgef:37ff68b88881759de8d0e6a803bb91a5634dd9eecd5d54966e49088525fdbe65@ec2-100-26-39-41.compute-1.amazonaws.com/dbadq5pojigai9`,
+  `postgres://twmuidzpzqswxh:a6cad4b430c8d3e774c1910b45cd877b9b1483a3131dbbb834cfd64e33a20904@ec2-3-208-79-113.compute-1.amazonaws.com:5432/d7e6llkd1otm2i`,
   {
     logging: false,
     dialect: 'postgres',
